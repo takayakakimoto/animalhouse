@@ -7,10 +7,19 @@
         </div>
         <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
           <span class="image">
-            <%= f.file_field :image %>
+             <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
           </span>
       <% end %>
     </aside>
+    
+    <script type="text/javascript">
+  $('#post_image').bind('change', function() {
+    var size_in_megabytes = this.files[0].size/1024/1024;
+    if (size_in_megabytes > 5) {
+      alert('Maximum file size is 5MB. Please choose a smaller file.');
+    }
+  });
+</script>
     <div class="col-xs-8">
       <%= render 'posts/posts', posts: @posts %>
     </div>
