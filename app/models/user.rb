@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :followers, through: :reverses_of_relationship, source: :user
   has_many :favorites
   has_many :favorite_posts, through: :favorites, source: :post
+  has_many :comments
  
  def follow(other_user)
     unless self == other_user
@@ -47,3 +48,12 @@ class User < ApplicationRecord
     self.favorite_posts.include?(post)
   end
 end
+
+private
+
+    # アップロードされた画像のサイズをバリデーションする
+    def image_size
+      if image.size > 5.megabytes
+        errors.add(:image, "should be less than 5MB")
+      end
+    end

@@ -61,3 +61,5 @@ group :production do
   gem 'pg', '0.21.0'
   gem 'fog', '1.42'
 end
+
+gem 'cloudinary' , '1.9.1'

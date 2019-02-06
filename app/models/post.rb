@@ -1,7 +1,10 @@
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :relationships
-  has_many :favorites
+  # has_many :relationships, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  
+
   mount_uploader :image, ImageUploader
   
   validates :content, presence: true, length: { maximum: 255 }
